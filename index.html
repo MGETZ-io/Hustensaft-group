@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hustensaft Group</title>
+    <style>
+        /* Grundlegende Stile */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Unternehmen Section */
+        .unternehmen {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .unternehmen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .unternehmen-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .unternehmen-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .unternehmen-logo {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .unternehmen-logo img {
+            max-height: 80px;
+            max-width: 80%;
+        }
+        
+        .unternehmen-content {
+            padding: 25px;
+        }
+        
+        .unternehmen-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .unternehmen-content p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        /* Über Uns Section */
+        .ueber-uns {
+            background-color: #2c3e50;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .ueber-uns-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .ueber-uns-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .ueber-uns-text p {
+            margin-bottom: 20px;
+        }
+        
+        .ueber-uns-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .ueber-uns-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- Platzhalter für Hustensaft Group Logo -->
+                    <div style="width: 50px; height: 50px; background-color: #3498db; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 5px;">HG</div>
+                    <h1>Hustensaft Group</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Startseite</a></li>
+                        <li><a href="#unternehmen">Unternehmen</a></li>
+                        <li><a href="#ueber-uns">Über Uns</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Hustensaft Group</h2>
+            <p>Eine dynamische Unternehmensgruppe mit Fokus auf Management, Hosting und innovative Projekte</p>
+            <a href="#unternehmen" class="btn">Unsere Unternehmen entdecken</a>
+        </div>
+    </section>
+
+    <!-- Unternehmen Section -->
+    <section class="unternehmen" id="unternehmen">
+        <div class="container">
+            <div class="section-title">
+                <h2>Unsere Tochterunternehmen</h2>
+                <p>Entdecken Sie die verschiedenen Bereiche der Hustensaft Group</p>
+            </div>
+            <div class="unternehmen-grid">
+                <!-- Hustensaft Management -->
+                <div class="unternehmen-card">
+                    <div class="unternehmen-logo">
+                        <!-- Platzhalter für Hustensaft Management Logo -->
+                        <div style="font-size: 24px; font-weight: bold; color: #2c3e50;">H2M</div>
+                    </div>
+                    <div class="unternehmen-content">
+                        <h3>Hustensaft Management</h3>
+                        <p>Wir setzen Statements. Professionelles Management für nachhaltigen Unternehmenserfolg.</p>
+                        <a href="#" class="btn">Mehr erfahren</a>
+                    </div>
+                </div>
+                
+                <!-- Hustensaft Hosting -->
+                <div class="unternehmen-card">
+                    <div class="unternehmen-logo">
+                        <!-- Platzhalter für Hustensaft Hosting Logo -->
+                        <div style="font-size: 24px; font-weight: bold; color: #2c3e50;">HUSTENSAFT</div>
+                    </div>
+                    <div class="unternehmen-content">
+                        <h3>Hustensaft Hosting</h3>
+                        <p>Zuverlässige Hosting-Lösungen für Unternehmen jeder Größe. Sicher, schnell und skalierbar.</p>
+                        <a href="#" class="btn">Mehr erfahren</a>
+                    </div>
+                </div>
+                
+                <!-- BTFM Projects -->
+                <div class="unternehmen-card">
+                    <div class="unternehmen-logo">
+                        <!-- Platzhalter für BTFM Projects Logo -->
+                        <div style="font-size: 24px; font-weight: bold; color: #2c3e50;">BTFM</div>
+                    </div>
+                    <div class="unternehmen-content">
+                        <h3>BTFM Projects</h3>
+                        <p>Innovative Projekte und zukunftsweisende Technologien für die digitale Transformation.</p>
+                        <a href="#" class="btn">Mehr erfahren</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Über Uns Section -->
+    <section class="ueber-uns" id="ueber-uns">
+        <div class="container">
+            <div class="ueber-uns-content">
+                <div class="ueber-uns-text">
+                    <h2>Über die Hustensaft Group</h2>
+                    <p>Die Hustensaft Group ist ein dynamisches Konglomerat mit Fokus auf Management-Dienstleistungen, IT-Hosting und innovativen Projekten. Mit unseren drei Tochterunternehmen bieten wir ganzheitliche Lösungen für die digitale Transformation.</p>
+                    <p>Unser Ansatz kombiniert strategisches Denken mit technologischer Exzellenz, um unseren Kunden nachhaltigen Erfolg zu ermöglichen.</p>
+                    <a href="#kontakt" class="btn">Kontakt aufnehmen</a>
+                </div>
+                <div class="ueber-uns-image">
+                    <!-- Platzhalter für ein Bild -->
+                    <div style="width: 100%; height: 300px; background-color: #34495e; display: flex; align-items: center; justify-content: center; color: white; border-radius: 8px;">Unternehmensbild</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontakt">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hustensaft Group</h3>
+                    <p>Eine dynamische Unternehmensgruppe mit Fokus auf Management, Hosting und innovative Projekte.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Unternehmen</h3>
+                    <ul>
+                        <li><a href="#">Hustensaft Management</a></li>
+                        <li><a href="#">Hustensaft Hosting</a></li>
+                        <li><a href="#">BTFM Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontakt</h3>
+                    <ul>
+                        <li>Musterstraße 123</li>
+                        <li>12345 Musterstadt</li>
+                        <li>info@hustensaft-group.de</li>
+                        <li>+49 123 456789</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Hustensaft Group. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Einfache JavaScript-Funktionalität für glatte Scroll-Animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Einfache Animation für die Unternehmenskarten beim Laden der Seite
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.unternehmen-card');
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
+        });
+    </script>
+</body>
+</html>
