@@ -3,448 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustensaft Group</title>
+    <title>Hustensaft Group - Dark Mode Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Grundlegende Stile */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+        /* Definieren der Haupt-Akzentfarbe für den Dark Mode (Vibrant Magenta) */
+        .hustensaft-color {
+            --hs-main: #E5398B; 
+            color: var(--hs-main); 
         }
         
+        /* Inter Font und Dark Mode Hintergrund/Text */
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d; /* Sehr dunkler Hintergrund */
+            color: #f3f4f6; /* Textfarbe Hellgrau */
+            min-height: 100vh;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        /* Haupt-Wrapper für Inhaltselemente */
+        .content-card {
+            background-color: #1a1a1a; /* Dunkleres Grau für Karten */
+            border: 1px solid #2d2d2d;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
         }
-        
-        /* Header */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
+
+        /* Stil für den Segmented Control Container (Leichter als der Body) */
+        .segmented-control {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
+            background-color: #262626; /* Basis-Hintergrund für die Leiste */
+            border-radius: 9999px; /* Pill-Form */
+            overflow: hidden; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
         }
         
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-            margin-right: 15px;
-        }
-        
-        .logo h1 {
-            font-size: 24px;
-            color: #2c3e50;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: #3498db;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
+        /* Stil für einzelne Segmente */
+        .switcher-segment {
+            flex: 1 1 0%; 
             text-align: center;
-            padding: 100px 0;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem; 
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            color: #9ca3af; /* Inaktive Textfarbe */
+            position: relative;
+            z-index: 10;
         }
-        
-        .hero h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
+
+        /* Hover-Effekt für inaktive Segmente */
+        .switcher-segment:not(.active):hover {
+            background-color: #3f3f3f; 
             color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
         }
-        
-        .btn:hover {
-            background-color: #2980b9;
+
+        /* Aktiver Zustand: Hoher Kontrast mit der Akzentfarbe */
+        .switcher-segment.active {
+            color: white; /* Textfarbe weiß */
+            background-color: var(--hs-main); /* Leuchtendes Magenta */
+            /* Deutlicher Schatten für den "Pop" */
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 15px 0px rgba(229, 57, 139, 0.6);
         }
-        
-        /* Unternehmen Section */
-        .unternehmen {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #7f8c8d;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .unternehmen-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .unternehmen-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .unternehmen-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .unternehmen-logo {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        
-        .unternehmen-logo img {
-            max-height: 80px;
-            max-width: 80%;
-            object-fit: contain;
-        }
-        
-        .unternehmen-content {
-            padding: 25px;
-        }
-        
-        .unternehmen-content h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        
-        .unternehmen-content p {
-            color: #7f8c8d;
-            margin-bottom: 20px;
-        }
-        
-        /* Über Uns Section */
-        .ueber-uns {
-            background-color: #2c3e50;
-            color: white;
-            padding: 80px 0;
-        }
-        
-        .ueber-uns-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .ueber-uns-text h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .ueber-uns-text p {
-            margin-bottom: 20px;
-        }
-        
-        .ueber-uns-image img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1a252f;
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: #3498db;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #34495e;
-            color: #95a5a6;
-            font-size: 14px;
-        }
-        
-        /* Responsive Design */
+
+        /* Responsive Anpassung: Auf mobilen Geräten untereinander */
         @media (max-width: 768px) {
-            .header-content {
+            .segmented-control {
                 flex-direction: column;
-                text-align: center;
+                border-radius: 0.75rem; 
+                padding: 0; /* Padding im Container entfernen */
             }
-            
-            nav ul {
-                margin-top: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
+            .switcher-segment {
+                border-radius: 0;
             }
-            
-            nav ul li {
-                margin: 5px 10px;
+            .switcher-segment:not(:last-child) {
+                border-bottom: 1px solid #3f3f3f; 
             }
-            
-            .hero h2 {
-                font-size: 36px;
+            .switcher-segment:first-child {
+                border-top-left-radius: 0.75rem;
+                border-top-right-radius: 0.75rem;
             }
-            
-            .ueber-uns-content {
-                grid-template-columns: 1fr;
+            .switcher-segment:last-child {
+                border-bottom-left-radius: 0.75rem;
+                border-bottom-right-radius: 0.75rem;
+            }
+            /* Trennlinie auf Mobile entfernen */
+            .switcher-segment:not(:last-child)::after {
+                content: none;
             }
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://api.hustensaft.org/HGrouplogo.png" alt="Hustensaft Group Logo">
-                    <h1>Hustensaft Group</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Startseite</a></li>
-                        <li><a href="#unternehmen">Unternehmen</a></li>
-                        <li><a href="#ueber-uns">Über Uns</a></li>
-                        <li><a href="#kontakt">Kontakt</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+<body class="p-4 sm:p-10">
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <img src="https://api.hustensaft.org/HGrouplogo.png" alt="Hustensaft Group Logo" style="height: 100px; margin-bottom: 20px;">
-            <h2>Hustensaft Group</h2>
-            <p>Eine dynamische Unternehmensgruppe mit Fokus auf Management, Hosting und innovative Projekte</p>
-            <a href="#unternehmen" class="btn">Unsere Unternehmen entdecken</a>
-        </div>
-    </section>
+    <!-- Hauptcontainer -->
+    <div class="max-w-5xl mx-auto">
 
-    <!-- Unternehmen Section -->
-    <section class="unternehmen" id="unternehmen">
-        <div class="container">
-            <div class="section-title">
-                <h2>Unsere Tochterunternehmen</h2>
-                <p>Entdecken Sie die verschiedenen Bereiche der Hustensaft Group</p>
-            </div>
-            <div class="unternehmen-grid">
-                <!-- Hustensaft Management -->
-                <div class="unternehmen-card">
-                    <div class="unternehmen-logo">
-                        <img src="https://api.hustensaft.org/HGrouplogo.png" alt="Hustensaft Management Logo">
-                    </div>
-                    <div class="unternehmen-content">
-                        <h3>Hustensaft Management</h3>
-                        <p>Wir setzen Statements. Professionelles Management für nachhaltigen Unternehmenserfolg.</p>
-                        <a href="#" class="btn">Mehr erfahren</a>
-                    </div>
-                </div>
+        <!-- Header / Logo Bereich -->
+        <header class="mb-12 p-4 border-b border-gray-700">
+            <h1 class="text-5xl font-extrabold tracking-tight">
+                <span class="hustensaft-color">Hustensaft</span> Group
+            </h1>
+            <p class="text-gray-400 mt-2 text-xl font-medium">Das zentrale Portal der Geschäftsbereiche</p>
+        </header>
+
+        <!-- Der Umschalter-Block, eingebettet in einer eigenen Karte -->
+        <div class="content-card p-6 rounded-2xl mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-200">Geschäftsbereich wählen:</h2>
+
+            <!-- Umschalter-Elemente (Segmented Control) -->
+            <div id="switcher-container" class="segmented-control max-w-full lg:max-w-4xl mx-auto">
                 
-                <!-- Hustensaft Hosting -->
-                <div class="unternehmen-card">
-                    <div class="unternehmen-logo">
-                        <img src="https://api.hustensaft.org/HGrouplogo.png" alt="Hustensaft Hosting Logo">
-                    </div>
-                    <div class="unternehmen-content">
-                        <h3>Hustensaft Hosting</h3>
-                        <p>Zuverlässige Hosting-Lösungen für Unternehmen jeder Größe. Sicher, schnell und skalierbar.</p>
-                        <a href="#" class="btn">Mehr erfahren</a>
-                    </div>
+                <!-- Item 1: Hustensaft Group (Standardmäßig aktiv) -->
+                <div id="hustensaft-group" data-site="Hustensaft Group" 
+                     class="switcher-segment active">
+                    Hustensaft Group
                 </div>
-                
-                <!-- BTFM Projects -->
-                <div class="unternehmen-card">
-                    <div class="unternehmen-logo">
-                        <img src="https://api.hustensaft.org/btfmprojects.png" alt="BTFM Projects Logo">
-                    </div>
-                    <div class="unternehmen-content">
-                        <h3>BTFM Projects</h3>
-                        <p>Innovative Projekte und zukunftsweisende Technologien für die digitale Transformation.</p>
-                        <a href="#" class="btn">Mehr erfahren</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Über Uns Section -->
-    <section class="ueber-uns" id="ueber-uns">
-        <div class="container">
-            <div class="ueber-uns-content">
-                <div class="ueber-uns-text">
-                    <h2>Über die Hustensaft Group</h2>
-                    <p>Die Hustensaft Group ist ein dynamisches Konglomerat mit Fokus auf Management-Dienstleistungen, IT-Hosting und innovativen Projekten. Mit unseren drei Tochterunternehmen bieten wir ganzheitliche Lösungen für die digitale Transformation.</p>
-                    <p>Unser Ansatz kombiniert strategisches Denken mit technologischer Exzellenz, um unseren Kunden nachhaltigen Erfolg zu ermöglichen.</p>
-                    <a href="#kontakt" class="btn">Kontakt aufnehmen</a>
+                <!-- Item 2: Hustensaft Hosting -->
+                <div id="hustensaft-hosting" data-site="Hustensaft Hosting" 
+                     class="switcher-segment">
+                    Hustensaft Hosting
                 </div>
-                <div class="ueber-uns-image">
-                    <img src="https://api.hustensaft.org/HGrouplogo.png" alt="Hustensaft Group Logo">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="kontakt">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <img src="https://api.hustensaft.org/HGrouplogo.png" alt="Hustensaft Group Logo" style="height: 40px; margin-bottom: 15px;">
-                    <p>Eine dynamische Unternehmensgruppe mit Fokus auf Management, Hosting und innovative Projekte.</p>
+                <!-- Item 3: Hustensaft Management -->
+                <div id="hustensaft-management" data-site="Hustensaft Management" 
+                     class="switcher-segment">
+                    Hustensaft Management
                 </div>
-                <div class="footer-column">
-                    <h3>Unternehmen</h3>
-                    <ul>
-                        <li><a href="#">Hustensaft Management</a></li>
-                        <li><a href="#">Hustensaft Hosting</a></li>
-                        <li><a href="#">BTFM Projects</a></li>
-                    </ul>
+
+                <!-- Item 4: BTFM Projects -->
+                <div id="btfm-projects" data-site="BTFM Projects" 
+                     class="switcher-segment">
+                    BTFM Projects
                 </div>
-                <div class="footer-column">
-                    <h3>Kontakt</h3>
-                    <ul>
-                        <li>Musterstraße 123</li>
-                        <li>12345 Musterstadt</li>
-                        <li>info@hustensaft-group.de</li>
-                        <li>+49 123 456789</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Hustensaft Group. Alle Rechte vorbehalten.</p>
+
             </div>
         </div>
+
+        <!-- Inhaltsbereich, der sich ändert -->
+        <div id="content-area" class="content-card p-8 rounded-2xl">
+            <!-- Initialer Inhalt wird hier vom JS-Code eingefügt -->
+        </div>
+
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="mt-16 pt-8 pb-4 text-center border-t border-gray-700 max-w-5xl mx-auto">
+        <p class="text-gray-500 text-sm leading-relaxed">
+            Maxim Getz <span class="hustensaft-color font-semibold">Hustensaft Managment</span><br>
+            PF24<br>
+            24536 Neumünster
+        </p>
     </footer>
 
     <script>
-        // Einfache JavaScript-Funktionalität für glatte Scroll-Animation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        // Datenbank der Inhalte mit den benutzerdefinierten Details
+        const siteContent = {
+            "Hustensaft Group": {
+                title: "Willkommen in der Hustensaft Group Zentrale",
+                description: "Die Hustensaft Group ist das Dach, unter dem alle unsere Geschäftsbereiche vereint sind. Wir legen Wert auf Synergieeffekte, Innovation und eine konsistente Markenführung. Hier finden Sie die neuesten Konzern-News und unsere Unternehmensphilosophie.",
+                team: [
+                    { name: "Maxim", alias: "Hu_stensaft", role: "CEO und Gründer", image: "https://hustensaft-api.fwh.is/index.php?Max" },
+                    { name: "Lucas", alias: "", role: "Entwicklungsleitung", image: "https://hustensaft-api.fwh.is/index.php?Lucas" }
+                ]
+            },
+            "Hustensaft Hosting": {
+                title: "Privates Hosting für interne Projekte",
+                description: "Hustensaft Hosting ist der dedizierte Anbieter für performante und sichere Server-Lösungen, die exklusiv für die Infrastruktur der BTFM Projects und des Hustensaft Managements bereitgestellt werden. Wir garantieren höchste Verfügbarkeit und private Netzwerksicherheit."
+            },
+            "Hustensaft Management": {
+                title: "Streamer Management und Agentur (agency.hustensaft.org)",
+                description: "Als Streamer Management kümmern wir uns um die administrativen und strategischen Belange unserer Partner. Von der Markenentwicklung über Kooperationen bis hin zur Vertragsabwicklung bieten wir umfassenden Support, um kreativen Köpfen den Rücken freizuhalten. Weitere Informationen unter Agency.hustensaft.org."
+            },
+            "BTFM Projects": {
+                title: "Das Multiprojekt-Universum (Tower & Freizeitpark)",
+                description: `BTFM Projects ist unser Flaggschiff für Community- und Innovationsprojekte. Dazu gehören der offizielle Multiprojekt Discord Server (<a href="https://discord.gg/RH5M8mrncG" target="_blank" class="hustensaft-color font-bold hover:underline">Discord-Invite-Link</a>), die Entwicklung des BTFM Freizeitparks und der imposante BTFM Tower. Ein Ort, an dem Ideen zu Realität werden.`
+            }
+        };
+
+        const contentArea = document.getElementById('content-area');
+        const switcherItems = document.querySelectorAll('.switcher-segment');
+
+        /**
+         * Erzeugt den HTML-Inhalt für den Inhaltsbereich basierend auf der ausgewählten Seite.
+         * @param {string} siteName - Der Name der Seite (Key im siteContent Objekt).
+         */
+        function renderContent(siteName) {
+            const data = siteContent[siteName];
+            if (!data) return;
+
+            // Holt die Hauptfarbe aus den CSS-Variablen für die Überschrift
+            const mainColor = getComputedStyle(document.documentElement).getPropertyValue('--hs-main');
+
+            // --- Team-Bereich (optional) ---
+            let teamHtml = '';
+            if (data.team && data.team.length > 0) {
+                // Generiert die einzelnen Team-Karten
+                const teamCards = data.team.map(member => `
+                    <div class="bg-[#262626] p-6 rounded-xl flex items-center shadow-md hover:shadow-lg transition duration-300">
+                        <img 
+                            src="${member.image}" 
+                            alt="Profilbild von ${member.name}" 
+                            class="w-20 h-20 rounded-full object-cover border-4 border-gray-700 mr-4 flex-shrink-0"
+                            onerror="this.onerror=null;this.src='https://placehold.co/80x80/1a1a1a/f3f4f6?text=HS'"
+                        >
+                        <div>
+                            <p class="text-xl font-bold text-white">${member.name} ${member.alias ? `(${member.alias})` : ''}</p>
+                            <p class="text-sm font-semibold hustensaft-color mt-1">${member.role}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Wrapper für den gesamten Team-Bereich
+                teamHtml = `
+                    <div class="mt-12 pt-6 border-t border-gray-700">
+                        <h4 class="text-2xl font-bold mb-6 text-gray-200">Das Team der Hustensaft Group</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${teamCards}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // HTML-Struktur für den Inhaltsbereich
+            contentArea.innerHTML = `
+                <h3 class="text-4xl font-extrabold mb-5" style="color: ${mainColor};">${data.title}</h3>
+                <p class="text-gray-300 leading-relaxed text-lg">${data.description}</p>
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                ${teamHtml}
                 
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                <div class="mt-10 pt-6 border-t border-gray-700 text-sm text-gray-500">
+                    <p>Aktuell ausgewählter Bereich: <span style="color: ${mainColor};">${siteName}</span></p>
+                </div>
+            `;
+        }
+
+        /**
+         * Behandelt den Klick auf ein Umschalter-Element.
+         * @param {Event} event - Das Klick-Ereignis.
+         */
+        function handleSwitcherClick(event) {
+            const target = event.currentTarget;
+            const siteName = target.getAttribute('data-site');
+
+            // 1. Klasse 'active' von allen entfernen
+            switcherItems.forEach(item => {
+                item.classList.remove('active');
             });
+
+            // 2. Klasse 'active' zum geklickten Element hinzufügen
+            target.classList.add('active');
+
+            // 3. Inhalt neu rendern
+            renderContent(siteName);
+        }
+
+        // Event-Listener für alle Umschalter-Elemente hinzufügen
+        switcherItems.forEach(item => {
+            item.addEventListener('click', handleSwitcherClick);
         });
-        
-        // Einfache Animation für die Unternehmenskarten beim Laden der Seite
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.unternehmen-card');
-            
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 200 * index);
-            });
+
+        // Beim Laden der Seite den Standardinhalt (Hustensaft Group) rendern
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContent("Hustensaft Group");
         });
+
     </script>
 </body>
 </html>
+
