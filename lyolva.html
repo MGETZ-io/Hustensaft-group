@@ -1,89 +1,141 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyolva – Du bist weg</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyolva – Du bist weg</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b0b0b;
-            color: #fff;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+    text-align: center;
+}
 
-        header {
-            padding: 60px 20px 20px;
-        }
+header {
+    padding: 60px 20px 20px;
+}
 
-        header h1 {
-            font-size: 3em;
-            margin: 0;
-            letter-spacing: 3px;
-        }
+header h1 {
+    font-size: 3em;
+    margin: 0;
+    letter-spacing: 3px;
+}
 
-        header p {
-            color: #aaa;
-            margin-top: 10px;
-        }
+header p {
+    color: #aaa;
+    margin-top: 10px;
+}
 
-        .cover {
-            width: 280px;
-            height: 280px;
-            border-radius: 15px;
-            object-fit: cover;
-            border: 3px solid #333;
-            margin: 30px auto;
-        }
+.cover {
+    width: 280px;
+    height: 280px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 3px solid #333;
+    margin: 30px auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
+.cover:hover {
+    transform: scale(1.05);
+}
 
-        audio {
-            width: 100%;
-            margin: 25px 0;
-        }
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
 
-        h2 {
-            margin-top: 40px;
-            font-size: 2em;
-        }
+audio {
+    width: 100%;
+    margin: 25px 0;
+}
 
-        p {
-            font-size: 1.1em;
-            color: #ddd;
-            line-height: 1.6;
-        }
+h2 {
+    margin-top: 40px;
+    font-size: 2em;
+}
 
-        .links a {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 20px;
-            background: #1db954;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-        }
+p {
+    font-size: 1.1em;
+    color: #ddd;
+    line-height: 1.6;
+}
 
-        .links a:hover {
-            background: #159c46;
-        }
+/* Sticker */
+.stickers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
 
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #777;
-            border-top: 1px solid #333;
-        }
-    </style>
+.sticker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-size: 1.05em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.sticker:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.spotify { background: #1DB954; }
+.apple {
+    background: #000;
+    border: 2px solid #fff;
+}
+.amazon { background: #232F3E; }
+
+.sticker span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+/* Info Box */
+.info-box {
+    display: none;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.info-box h3 {
+    margin-top: 0;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #777;
+    border-top: 1px solid #333;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -91,14 +143,30 @@
     <p>Single · 2025</p>
 </header>
 
-<!-- Cover -->
+<!-- Cover Image -->
 <img 
     src="https://i1.sndcdn.com/avatars-5O5N8gRf7xWRKyFy-VRfa5A-t1080x1080.jpg"
-    alt="Lyolva – Du bist weg"
+    alt="Lyolva – Künstlerbild"
     class="cover"
+    onclick="toggleInfo()"
 >
 
 <div class="container">
+
+    <!-- Info Box -->
+    <div class="info-box" id="infoBox">
+        <h3>Über Lyolva</h3>
+        <p>
+            Lyolva ist ein aufstrebender unabhängiger Künstler, der 2025 mit seiner
+            Debüt-Single <strong>„Du bist weg“</strong> erstmals öffentlich in
+            Erscheinung trat.
+        </p>
+        <p>
+            <strong>Genre:</strong> Modern Hip-Hop / Emotional Rap<br>
+            <strong>Release:</strong> 2025<br>
+            <strong>Status:</strong> Independent Artist
+        </p>
+    </div>
 
     <h2>🎧 Du bist weg</h2>
 
@@ -109,26 +177,33 @@
     </audio>
 
     <p>
-        „Du bist weg“ ist die erste veröffentlichte Single von Lyolva.
-        Der Song thematisiert Verlust, emotionale Distanz und innere Leere
-        – getragen von modernen Sounds und ehrlichen Texten.
+        „Du bist weg“ thematisiert Verlust, emotionale Distanz und innere Leere –
+        getragen von modernen Sounds und ehrlichen Texten.
     </p>
 
     <h2>Streaming & Plattformen</h2>
 
-    <div class="links">
-        <a href="https://open.spotify.com/search/Lyolva%20Du%20bist%20weg" target="_blank">
-            🎧 Spotify
+    <!-- Sticker Badges -->
+    <div class="stickers">
+
+        <a class="sticker spotify"
+           href="https://open.spotify.com/search/Lyolva%20Du%20bist%20weg"
+           target="_blank">
+            <span>🎧</span> Listen on Spotify
         </a>
-        <a href="https://music.apple.com/de/search?term=Lyolva%20Du%20bist%20weg" target="_blank">
-            🍏 Apple Music
+
+        <a class="sticker apple"
+           href="https://music.apple.com/de/search?term=Lyolva%20Du%20bist%20weg"
+           target="_blank">
+            <span>🍏</span> Listen on Apple Music
         </a>
-        <a href="https://soundcloud.com/search?q=Lyolva%20Du%20bist%20weg" target="_blank">
-            ☁️ SoundCloud
+
+        <a class="sticker amazon"
+           href="https://music.amazon.com/search/lyolva%20du%20bist%20weg"
+           target="_blank">
+            <span>🛒</span> Listen on Amazon Music
         </a>
-        <a href="https://music.amazon.com/search/lyolva%20du%20bist%20weg" target="_blank">
-            🛒 Amazon Music
-        </a>
+
     </div>
 
 </div>
@@ -136,6 +211,13 @@
 <footer>
     © 2025 Lyolva · Alle Rechte vorbehalten
 </footer>
+
+<script>
+function toggleInfo() {
+    const box = document.getElementById("infoBox");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
