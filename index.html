@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hustensaft Group - Dark Mode Portal</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .hustensaft-color {
-            --hs-main: #E5398B; 
-            color: var(--hs-main); 
+            --hs-main: #E5398B;
+            color: var(--hs-main);
         }
 
         body {
@@ -42,7 +44,6 @@
             transition: all 0.3s ease-in-out;
             cursor: pointer;
             color: #9ca3af;
-            z-index: 10;
         }
 
         .switcher-segment:not(.active):hover {
@@ -67,137 +68,162 @@
         }
     </style>
 </head>
+
 <body class="p-4 sm:p-10">
 
-    <div class="max-w-5xl mx-auto">
+<div class="max-w-5xl mx-auto">
 
-        <header class="mb-12 p-4 border-b border-gray-700">
-            <h1 class="text-5xl font-extrabold tracking-tight">
-                <span class="hustensaft-color">Hustensaft</span> Group
-            </h1>
-            <p class="text-gray-400 mt-2 text-xl font-medium">Das zentrale Portal der Geschäftsbereiche</p>
-        </header>
+    <header class="mb-12 p-4 border-b border-gray-700">
+        <h1 class="text-5xl font-extrabold tracking-tight">
+            <span class="hustensaft-color">Hustensaft</span> Group
+        </h1>
+        <p class="text-gray-400 mt-2 text-xl font-medium">
+            Das zentrale Portal der Geschäftsbereiche
+        </p>
+    </header>
 
-        <div class="content-card p-6 rounded-2xl mb-12">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-200">Geschäftsbereich wählen:</h2>
+    <div class="content-card p-6 rounded-2xl mb-12">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-200">
+            Geschäftsbereich wählen:
+        </h2>
 
-            <div id="switcher-container" class="segmented-control max-w-full lg:max-w-4xl mx-auto">
-                <div id="hustensaft-group" data-site="Hustensaft Group" class="switcher-segment active">Hustensaft Group</div>
-                <div id="hustensaft-hosting" data-site="Hustensaft Hosting" class="switcher-segment">Hustensaft Hosting</div>
-                <div id="hustensaft-management" data-site="Hustensaft Management" class="switcher-segment">Hustensaft Management</div>
-                <div id="btfm-projects" data-site="BTFM Projects" class="switcher-segment">BTFM Projects</div>
-            </div>
+        <div class="segmented-control max-w-full lg:max-w-4xl mx-auto">
+            <div class="switcher-segment active" data-site="Hustensaft Group">Hustensaft Group</div>
+            <div class="switcher-segment" data-site="Hustensaft Hosting">Hustensaft Hosting</div>
+            <div class="switcher-segment" data-site="Hustensaft Management">Hustensaft Management</div>
+            <div class="switcher-segment" data-site="BTFM Projects">BTFM Projects</div>
         </div>
-
-        <div id="content-area" class="content-card p-8 rounded-2xl"></div>
-
     </div>
 
-    <footer class="mt-16 pt-8 pb-4 text-center border-t border-gray-700 max-w-5xl mx-auto">
-        <p class="text-gray-500 text-sm leading-relaxed">
-            Maxim Getz <span class="hustensaft-color font-semibold">Hustensaft Managment</span><br>
-            PF24<br>
-            24536 Neumünster
-        </p>
-    </footer>
+    <div id="content-area" class="content-card p-8 rounded-2xl"></div>
 
-    <script>
-        // API-Bild-URLs + GitHub Pages Cachebuster
-        const maximApiUrl = "https://hustensaft-api.fwh.is/index.php?Max&cb=" + Date.now();
-        const lucasApiUrl = "https://hustensaft-api.fwh.is/index.php?Lucas&cb=" + Date.now();
+</div>
 
-        const siteContent = {
-            "Hustensaft Group": {
-                title: "Willkommen in der Hustensaft Group Zentrale",
-                description: "Die Hustensaft Group ist das Dach, unter dem alle unsere Geschäftsbereiche vereint sind.",
-                team: [
-                    { name: "Maxim", alias: "Hu_stensaft", role: "CEO und Gründer", initial: "M", image: maximApiUrl },
-                    { name: "Fabio K.", alias: "Fambos", role: "Hosting-Partner", initial: "F", image: maximApiUrl },
-                    { name: "Lucas", alias: "", role: "Entwicklungsleitung", initial: "L", image: lucasApiUrl }
-                ]
-            },
-            "Hustensaft Hosting": {
-                title: "Privates Hosting für interne Projekte",
-                description: "Hustensaft Hosting ist der dedizierte Anbieter für sichere Server-Lösungen."
-            },
-            "Hustensaft Management": {
-                title: "Streamer Management und Agentur",
-                description: "Wir kümmern uns um Markenentwicklung, Kooperationen und organisatorischen Support."
-            },
-            "BTFM Projects": {
-                title: "Das Multiprojekt-Universum",
-                description: `Offizieller Multiprojekt Discord Server: 
-                <a href="https://discord.gg/RH5M8mrncG" target="_blank" class="hustensaft-color font-bold hover:underline">
+<footer class="mt-16 pt-8 pb-4 text-center border-t border-gray-700 max-w-5xl mx-auto">
+    <p class="text-gray-500 text-sm leading-relaxed">
+        Maxim Getz <span class="hustensaft-color font-semibold">Hustensaft Management</span><br>
+        PF24<br>
+        24536 Neumünster
+    </p>
+</footer>
+
+<script>
+    const maximApiUrl = "https://hustensaft-api.fwh.is/index.php?Max&cb=" + Date.now();
+    const lucasApiUrl = "https://hustensaft-api.fwh.is/index.php?Lucas&cb=" + Date.now();
+
+    const siteContent = {
+        "Hustensaft Group": {
+            title: "Willkommen in der Hustensaft Group Zentrale",
+            description: "Die Hustensaft Group ist das Dach, unter dem alle unsere Geschäftsbereiche vereint sind.",
+            team: [
+                {
+                    name: "Maxim",
+                    alias: "Hu_stensaft",
+                    role: "CEO und Gründer",
+                    initial: "M",
+                    image: maximApiUrl
+                },
+                {
+                    name: "Fabio K.",
+                    alias: "Fambos",
+                    role: "Hosting-Partner",
+                    initial: "F",
+                    image: maximApiUrl,
+                    link: "https://hostvora.com"
+                },
+                {
+                    name: "Lucas",
+                    alias: "",
+                    role: "Entwicklungsleitung",
+                    initial: "L",
+                    image: lucasApiUrl
+                }
+            ]
+        },
+        "Hustensaft Hosting": {
+            title: "Privates Hosting für interne Projekte",
+            description: "Hustensaft Hosting ist der dedizierte Anbieter für sichere Server-Lösungen."
+        },
+        "Hustensaft Management": {
+            title: "Streamer Management und Agentur",
+            description: "Wir kümmern uns um Markenentwicklung, Kooperationen und organisatorischen Support."
+        },
+        "BTFM Projects": {
+            title: "Das Multiprojekt-Universum",
+            description: `
+                Offizieller Multiprojekt Discord Server:
+                <a href="https://discord.gg/RH5M8mrncG" target="_blank"
+                   class="hustensaft-color font-bold hover:underline">
                     Discord-Invite-Link
                 </a>`
-            }
-        };
+        }
+    };
 
-        const contentArea = document.getElementById('content-area');
-        const switcherItems = document.querySelectorAll('.switcher-segment');
+    const contentArea = document.getElementById("content-area");
+    const switcherItems = document.querySelectorAll(".switcher-segment");
 
-        window.createFallbackPlaceholder = function(initial) {
-            const mainColor = getComputedStyle(document.documentElement).getPropertyValue('--hs-main');
-            return `
-                <div class="w-20 h-20 rounded-full border-4 mr-4 flex items-center justify-center text-2xl font-bold"
-                     style="border-color:#374151;background-color:${mainColor};color:white;">
-                    ${initial}
-                </div>
-            `;
-        };
+    function createFallbackPlaceholder(initial) {
+        return `
+            <div class="w-20 h-20 rounded-full border-4 mr-4 flex items-center justify-center text-2xl font-bold"
+                 style="border-color:#374151;background-color:#E5398B;color:white;">
+                ${initial}
+            </div>`;
+    }
 
-        function renderContent(siteName) {
-            const data = siteContent[siteName];
-            const mainColor = getComputedStyle(document.documentElement).getPropertyValue('--hs-main');
+    function renderContent(siteName) {
+        const data = siteContent[siteName];
+        let teamHtml = "";
 
-            let teamHtml = '';
-            if (data.team) {
-                teamHtml = `
-                    <div class="mt-12 pt-6 border-t border-gray-700">
-                        <h4 class="text-2xl font-bold mb-6 text-gray-200">Das Team der Hustensaft Group</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            ${data.team.map(member => `
-                                <div class="bg-[#262626] p-6 rounded-xl flex items-center shadow-md hover:shadow-lg transition">
-                                    <div id="img-container-${member.name}">
-                                        <img id="team-img-${member.name}"
-                                            src="${member.image}"
-                                            alt="Profilbild von ${member.name}"
-                                            class="w-20 h-20 rounded-full object-cover border-4 border-gray-700 mr-4"
-                                            onerror="document.getElementById('img-container-${member.name}').innerHTML = createFallbackPlaceholder('${member.initial}')">
-                                    </div>
-                                    <div>
-                                        <p class="text-xl font-bold text-white">${member.name} ${member.alias ? '('+member.alias+')' : ''}</p>
-                                        <p class="text-sm font-semibold hustensaft-color mt-1">${member.role}</p>
-                                    </div>
+        if (data.team) {
+            teamHtml = `
+                <div class="mt-12 pt-6 border-t border-gray-700">
+                    <h4 class="text-2xl font-bold mb-6 text-gray-200">Das Team der Hustensaft Group</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        ${data.team.map(member => `
+                            <div
+                                class="bg-[#262626] p-6 rounded-xl flex items-center shadow-md hover:shadow-lg transition
+                                ${member.link ? 'cursor-pointer hover:bg-[#2f2f2f]' : ''}"
+                                ${member.link ? `onclick="window.open('${member.link}', '_blank')"` : ""}
+                            >
+                                <div id="img-container-${member.name}">
+                                    <img src="${member.image}"
+                                         alt="Profilbild von ${member.name}"
+                                         class="w-20 h-20 rounded-full object-cover border-4 border-gray-700 mr-4"
+                                         onerror="this.outerHTML = createFallbackPlaceholder('${member.initial}')">
                                 </div>
-                            `).join('')}
-                        </div>
+                                <div>
+                                    <p class="text-xl font-bold text-white">
+                                        ${member.name} ${member.alias ? '(' + member.alias + ')' : ''}
+                                    </p>
+                                    <p class="text-sm font-semibold hustensaft-color mt-1">
+                                        ${member.role}
+                                    </p>
+                                </div>
+                            </div>
+                        `).join("")}
                     </div>
-                `;
-            }
-
-            contentArea.innerHTML = `
-                <h3 class="text-4xl font-extrabold mb-5" style="color:${mainColor};">${data.title}</h3>
-                <p class="text-gray-300 leading-relaxed text-lg">${data.description}</p>
-                ${teamHtml}
-                <div class="mt-10 pt-6 border-t border-gray-700 text-sm text-gray-500">
-                    <p>Aktuell ausgewählter Bereich: <span style="color:${mainColor};">${siteName}</span></p>
-                </div>
-            `;
+                </div>`;
         }
 
-        switcherItems.forEach(item => {
-            item.addEventListener('click', () => {
-                switcherItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                renderContent(item.getAttribute('data-site'));
-            });
-        });
+        contentArea.innerHTML = `
+            <h3 class="text-4xl font-extrabold mb-5 hustensaft-color">${data.title}</h3>
+            <p class="text-gray-300 leading-relaxed text-lg">${data.description}</p>
+            ${teamHtml}
+        `;
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderContent("Hustensaft Group");
+    switcherItems.forEach(item => {
+        item.addEventListener("click", () => {
+            switcherItems.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+            renderContent(item.dataset.site);
         });
-    </script>
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderContent("Hustensaft Group");
+    });
+</script>
 
 </body>
 </html>
